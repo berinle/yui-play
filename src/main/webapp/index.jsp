@@ -34,7 +34,60 @@
 	<script type="text/javascript" src="http://yui.yahooapis.com/combo?2.8.0r4/build/yahoo-dom-event/yahoo-dom-event.js&2.8.0r4/build/element/element-min.js&2.8.0r4/build/datasource/datasource-min.js&2.8.0r4/build/datatable/datatable-min.js"></script>
 	
 	<script type="text/javascript">
-		var myColumnDefs = [
+	//checkout http://developer.yahoo.com/yui/examples/datatable/dt_dynamicdata.html and 
+		YAHOO.example.DynamicData = function() { 
+	    // Column definitions 
+	    var myColumnDefs = [ // sortable:true enables sorting 
+	        {key:"firstName", label:"First Name", sortable:true}, 
+	        {key:"lastName", label:"Last Name", sortable:true}, 
+	        {key:"ssn", label:"Social Security No."} 
+	    ]; 
+	 
+	    // Custom parser 
+	    var stringToDate = function(sData) { 
+	        var array = sData.split("-"); 
+	        return new Date(array[1] + " " + array[0] + ", " + array[2]); 
+	    }; 
+	     
+	    // DataSource instance 
+	    var myDataSource = new YAHOO.util.DataSource("datafeed.jsp"); 
+	    myDataSource.responseType = YAHOO.util.DataSource.TYPE_JSON; 
+	    myDataSource.responseSchema = { 
+	        resultsList: "records", 
+	        fields: [ 
+	            {key:"firstName"}, 
+	            {key:"lastName"}, 
+	            {key:"ssn"}
+	        ], 
+	        metaFields: { 
+	            totalRecords: "totalRecords" // Access to value in the server response 
+	        } 
+	    }; 
+	     
+	    // DataTable configuration 
+	    var myConfigs = { 
+	        initialRequest: "sort=firstName&dir=asc&startIndex=0&results=25", // Initial request for first page of data 
+	        dynamicData: true, // Enables dynamic server-driven data 
+	        sortedBy : {key:"firstName", dir:YAHOO.widget.DataTable.CLASS_ASC}, // Sets UI initial sort arrow 
+	        paginator: new YAHOO.widget.Paginator({ rowsPerPage:25, rowsPerPageOptions: [10,25,50,100] }) // Enables pagination  
+	    }; 
+	     
+	    // DataTable instance 
+	    var myDataTable = new YAHOO.widget.DataTable("dynamicdata", myColumnDefs, myDataSource, myConfigs); 
+	    // Update totalRecords on the fly with value from server 
+	    myDataTable.handleDataReturnPayload = function(oRequest, oResponse, oPayload) { 
+	        oPayload.totalRecords = oResponse.meta.totalRecords; 
+	        return oPayload; 
+	    } 
+	     
+	    return { 
+	        ds: myDataSource, 
+	        dt: myDataTable 
+	    }; 
+	         
+	}(); 
+	
+		/*var myColumnDefs = [
 				{key: "firstName", label: "First Name", sortable:true},
 				{key: "lastName", label: "Last Name", sortable:true},
 				{key: "ssn", label: "Social Security No.", sortable:true}
@@ -42,18 +95,18 @@
 			
 			
 			
-		/*myDataSource.responseSchema = {
+		myDataSource.responseSchema = {
 			fields: [
 				{key: "firstName", parser: "string"},
 				{key: "lastName", parser: "string"},
 				{key: "ssn", parser: "string"}
 			]
-			};*/
+			};
 			
 		var myConfigs = { paginator: new YAHOO.widget.Paginator({rowsPerPage: 25, rowsPerPageOptions: [10,25,50,100]})};
 		
 		var myDataTable = new YAHOO.widget.DataTable("myContainer", myColumnDefs, myDataSource, myConfigs);
-		
+		*/
 	</script>
 </head>
 
@@ -61,7 +114,7 @@
 <body class="yui-skin-sam">
 	<jsp:useBean id="wh" class="net.berinle.yuitour.Warehouse"></jsp:useBean>
 	
-	<div id="myContainer">
+	<div id="dynamicdata">
 	
 	</div>
 </body>
