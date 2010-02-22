@@ -26,11 +26,44 @@
 	 
 	<!-- Source files -->
 	<script src="http://yui.yahooapis.com/2.8.0r4/build/datatable/datatable-min.js"></script>
+	
+	
+	<!-- Combo-handled YUI CSS files: --> 
+	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/combo?2.8.0r4/build/datatable/assets/skins/sam/datatable.css"> 
+	<!-- Combo-handled YUI JS files: --> 
+	<script type="text/javascript" src="http://yui.yahooapis.com/combo?2.8.0r4/build/yahoo-dom-event/yahoo-dom-event.js&2.8.0r4/build/element/element-min.js&2.8.0r4/build/datasource/datasource-min.js&2.8.0r4/build/datatable/datatable-min.js"></script>
+	
+	<script type="text/javascript">
+		var myColumnDefs = [
+				{key: "firstName", label: "First Name", sortable:true},
+				{key: "lastName", label: "Last Name", sortable:true},
+				{key: "ssn", label: "Social Security No.", sortable:true}
+			];
+			
+			
+			
+		/*myDataSource.responseSchema = {
+			fields: [
+				{key: "firstName", parser: "string"},
+				{key: "lastName", parser: "string"},
+				{key: "ssn", parser: "string"}
+			]
+			};*/
+			
+		var myConfigs = { paginator: new YAHOO.widget.Paginator({rowsPerPage: 25, rowsPerPageOptions: [10,25,50,100]})};
+		
+		var myDataTable = new YAHOO.widget.DataTable("myContainer", myColumnDefs, myDataSource, myConfigs);
+		
+	</script>
 </head>
 
 
 <body class="yui-skin-sam">
 	<jsp:useBean id="wh" class="net.berinle.yuitour.Warehouse"></jsp:useBean>
+	
+	<div id="myContainer">
+	
+	</div>
 </body>
 
 
