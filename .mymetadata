@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="yui-play"
+  id="myeclipse.1267037657210"
+  context-root="/yui"
+  j2ee-spec="1.4"
+  archive="yui-play.war">
+  <attributes>
+    <attribute name="webrootdir" value="src/main/webapp" />
+  </attributes>
+</project-module>
+

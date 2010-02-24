@@ -55,9 +55,9 @@
 	    myDataSource.responseSchema = { 
 	        resultsList: "records", 
 	        fields: [ 
-	            {key:"firstName"}, 
-	            {key:"lastName"}, 
-	            {key:"ssn"}
+	            {key:"firstName", sortable:true}, 
+	            {key:"lastName", sortable:true}, 
+	            {key:"ssn", sortable:true}
 	        ], 
 	        metaFields: { 
 	            totalRecords: "totalRecords" // Access to value in the server response 
