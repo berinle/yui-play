@@ -7,5 +7,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.wst.jsdt.launching.baseBrowserLibrary"/>
+	<classpathentry kind="src" path="src/main/webapp"/>
 	<classpathentry kind="output" path=""/>
 </classpath>

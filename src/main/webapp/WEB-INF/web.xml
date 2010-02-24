@@ -3,4 +3,14 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	
+	<servlet>
+		<servlet-name>feeder</servlet-name>
+		<servlet-class>net.berinle.yuitour.servlet.FeederServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>feeder</servlet-name>
+		<url-pattern>/servlet/feeder</url-pattern>
+	</servlet-mapping>
 </web-app>

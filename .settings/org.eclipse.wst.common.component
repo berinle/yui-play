@@ -7,5 +7,8 @@
     <wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/java"/>
     <wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/resources"/>
     <property name="java-output-path" value="build/classes/main"/>
+    <dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//C:/Documents and Settings/berinle/.gradle/cache/com.googlecode.json-simple/json-simple/jars/json-simple-1.1.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
   </wb-module>
 </project-modules>

@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-	//compile "displaytag:displaytag:1.2"
+	compile "com.googlecode.json-simple:json-simple:1.1"
 	providedCompile "javax.servlet:servlet-api:2.5"	
 }
 
